@@ -101,6 +101,50 @@ export interface User {
 }
 
 /**
+ * JWT Authentication Payload
+ */
+export interface AuthTokenPayload {
+  userId: string;
+  role: UserRole;
+}
+
+/**
+ * Sanitized User Identity returned in Auth responses
+ */
+export interface AuthUser {
+  id: string;
+  phone: string;
+  role: UserRole;
+  preferredLanguage: LanguageCode;
+  isVerified: boolean;
+}
+
+/**
+ * Request payload for sending an OTP
+ */
+export interface SendOtpRequest {
+  phone: string;
+}
+
+/**
+ * Request payload for verifying an OTP
+ */
+export interface VerifyOtpRequest {
+  phone: string;
+  otp: string;
+  role?: UserRole.FARMER | UserRole.BUYER;
+  preferredLanguage?: LanguageCode;
+}
+
+/**
+ * Auth response data containing JWT and user profile
+ */
+export interface AuthResponseData {
+  token: string;
+  user: AuthUser;
+}
+
+/**
  * Farmer Profile Domain Contract
  */
 export interface FarmerProfile {
