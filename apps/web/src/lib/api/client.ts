@@ -18,6 +18,13 @@ export class ApiError extends Error {
   }
 }
 
+type UnauthorizedListener = () => void;
+let unauthorizedListener: UnauthorizedListener | null = null;
+
+export function registerUnauthorizedListener(listener: UnauthorizedListener | null): void {
+  unauthorizedListener = listener;
+}
+
 /**
  * Standard typed HTTP fetch wrapper for RythuConnect frontend.
  * Automatically injects authorization headers, serializes payloads, and normalizes errors.
@@ -71,6 +78,13 @@ export async function apiClient<T = unknown>(
     }
 
     if (!response.ok) {
+      if (response.status === 401 && token) {
+        tokenStorage.clearToken();
+        if (unauthorizedListener) {
+          unauthorizedListener();
+        }
+      }
+
       const errorPayload = typeof data === 'object' && data !== null ? (data as Record<string, unknown>) : {};
       const errorMessage =
         typeof errorPayload.message === 'string'

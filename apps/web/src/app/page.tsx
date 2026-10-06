@@ -1,36 +1,60 @@
+'use client';
+
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
+import Link from 'next/link';
+import { UserRole } from '@rythuconnect/types';
+import { useAuth } from '@/context/AuthContext';
+import { useTranslation } from '@/context/LanguageContext';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, Badge, Button } from '@/components/ui';
 
 export default function Home() {
+  const { user, isAuthenticated } = useAuth();
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col flex-1 w-full">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/60 via-white to-transparent py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-slate-100">
         <div className="mx-auto max-w-4xl text-center">
           <Badge variant="primary" size="md" className="mb-4 shadow-2xs">
-            🌱 Agricultural Direct Marketplace
+            {t('landing.badge')}
           </Badge>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
-            Connect Farmers Directly with Buyers
+            {t('landing.hero_title')}
           </h1>
           <p className="mt-5 text-base sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            A multilingual agriculture marketplace helping farmers sell produce directly to buyers,
-            eliminate middleman dependency, and discover fair, transparent market opportunities.
+            {t('landing.hero_desc')}
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <a href="#roles" className="w-full sm:w-auto">
-              <Button variant="primary" size="lg" fullWidth>
-                Get Started
-              </Button>
-            </a>
-            <a href="#how-it-works" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" fullWidth>
-                How It Works
-              </Button>
-            </a>
+            {isAuthenticated ? (
+              user?.role === UserRole.FARMER ? (
+                <Link href="/farmer/dashboard" className="w-full sm:w-auto">
+                  <Button variant="primary" size="lg" fullWidth>
+                    🌾 {t('nav.farmer_dashboard')}
+                  </Button>
+                </Link>
+              ) : (
+                <Link href="/buyer/marketplace" className="w-full sm:w-auto">
+                  <Button variant="secondary" size="lg" fullWidth>
+                    🛒 {t('nav.buyer_marketplace')}
+                  </Button>
+                </Link>
+              )
+            ) : (
+              <>
+                <Link href="/auth/register" className="w-full sm:w-auto">
+                  <Button variant="primary" size="lg" fullWidth>
+                    {t('landing.get_started')}
+                  </Button>
+                </Link>
+                <a href="#roles" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" fullWidth>
+                    {t('landing.how_it_works')}
+                  </Button>
+                </a>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -39,10 +63,10 @@ export default function Home() {
       <section id="roles" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl w-full">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
-            Choose Your Marketplace Role
+            {t('landing.roles_heading')}
           </h2>
           <p className="text-sm sm:text-base text-slate-600 mt-2">
-            Tailored interfaces designed specifically for harvest producers and commercial buyers.
+            {t('landing.roles_subheading')}
           </p>
         </div>
 
@@ -54,13 +78,10 @@ export default function Home() {
                 <span className="text-3xl" aria-hidden="true">
                   🌾
                 </span>
-                <Badge variant="primary">FARMER ROLE</Badge>
+                <Badge variant="primary">{t('auth.farmer_role_title').toUpperCase()}</Badge>
               </div>
-              <CardTitle>For Farmers</CardTitle>
-              <CardDescription>
-                List your crops directly, set transparent unit prices, and connect directly with local
-                and commercial buyers without paying intermediary commissions.
-              </CardDescription>
+              <CardTitle>{t('landing.for_farmers')}</CardTitle>
+              <CardDescription>{t('landing.farmer_desc')}</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2.5 text-sm text-slate-700 mb-6">
@@ -78,9 +99,19 @@ export default function Home() {
                 </li>
               </ul>
               <div className="pt-2">
-                <Button variant="primary" size="md" fullWidth disabled>
-                  Farmer Portal (Phase 4.2)
-                </Button>
+                {isAuthenticated ? (
+                  <Link href="/farmer/dashboard" className="block w-full">
+                    <Button variant="primary" size="md" fullWidth>
+                      {t('nav.farmer_dashboard')}
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link href="/auth/register" className="block w-full">
+                    <Button variant="primary" size="md" fullWidth>
+                      {t('landing.get_started')} ({t('auth.farmer_role_title')})
+                    </Button>
+                  </Link>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -92,13 +123,10 @@ export default function Home() {
                 <span className="text-3xl" aria-hidden="true">
                   🛒
                 </span>
-                <Badge variant="secondary">BUYER ROLE</Badge>
+                <Badge variant="secondary">{t('auth.buyer_role_title').toUpperCase()}</Badge>
               </div>
-              <CardTitle>For Buyers</CardTitle>
-              <CardDescription>
-                Source fresh, verified agricultural produce directly from farm origins with verifiable
-                harvest details and clear per-unit prices.
-              </CardDescription>
+              <CardTitle>{t('landing.for_buyers')}</CardTitle>
+              <CardDescription>{t('landing.buyer_desc')}</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2.5 text-sm text-slate-700 mb-6">
@@ -116,9 +144,19 @@ export default function Home() {
                 </li>
               </ul>
               <div className="pt-2">
-                <Button variant="secondary" size="md" fullWidth disabled>
-                  Buyer Marketplace (Phase 4.2)
-                </Button>
+                {isAuthenticated ? (
+                  <Link href="/buyer/marketplace" className="block w-full">
+                    <Button variant="secondary" size="md" fullWidth>
+                      {t('nav.buyer_marketplace')}
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link href="/auth/register" className="block w-full">
+                    <Button variant="secondary" size="md" fullWidth>
+                      {t('landing.get_started')} ({t('auth.buyer_role_title')})
+                    </Button>
+                  </Link>
+                )}
               </div>
             </CardContent>
           </Card>

@@ -15,7 +15,11 @@ export const tokenStorage = {
       return null;
     }
     try {
-      return window.localStorage.getItem(AUTH_TOKEN_KEY);
+      const token = window.localStorage.getItem(AUTH_TOKEN_KEY);
+      if (!token || token === 'undefined' || token === 'null' || token.trim() === '') {
+        return null;
+      }
+      return token;
     } catch {
       return null;
     }

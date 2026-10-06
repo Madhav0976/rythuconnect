@@ -1,0 +1,90 @@
+{
+  "brand": {
+    "name": "RythuConnect",
+    "tagline": "Direct Agriculture Marketplace",
+    "mission": "A multilingual farmer-to-buyer marketplace helping Indian farmers sell crops directly, minimize middleman dependency, and achieve fair, transparent pricing."
+  },
+  "nav": {
+    "home": "Home",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "farmer_dashboard": "Farmer Dashboard",
+    "buyer_marketplace": "Buyer Marketplace",
+    "language": "Language",
+    "india_badge": "India 🇮🇳"
+  },
+  "common": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "continue": "Continue",
+    "back": "Back",
+    "cancel": "Cancel",
+    "save": "Save",
+    "retry": "Retry",
+    "required": "Required",
+    "verified": "Verified",
+    "unverified": "Unverified"
+  },
+  "auth": {
+    "login_title": "Login to RythuConnect",
+    "login_subtitle": "Enter your mobile phone number to receive a secure login OTP.",
+    "register_title": "Create Your Account",
+    "register_subtitle": "Select your marketplace role and verify your mobile phone number.",
+    "choose_role": "Choose Your Role",
+    "farmer_role_title": "Farmer",
+    "farmer_role_desc": "I want to sell my farm harvest directly to buyers.",
+    "buyer_role_title": "Buyer",
+    "buyer_role_desc": "I want to buy fresh agricultural crops directly from farmers.",
+    "phone_label": "Mobile Phone Number",
+    "phone_hint": "Enter 10-digit Indian mobile number (e.g., 9876543210)",
+    "send_otp": "Send OTP",
+    "sending_otp": "Sending OTP...",
+    "otp_title": "Verify Security Code",
+    "otp_subtitle": "Enter the 6-digit code sent to your phone",
+    "otp_label": "6-Digit Security Code",
+    "verify_otp": "Verify & Continue",
+    "verifying": "Verifying...",
+    "resend_otp": "Resend Code",
+    "cooldown_notice": "Resend available in",
+    "seconds": "seconds",
+    "change_phone": "Change Phone Number",
+    "no_account": "Don't have an account?",
+    "register_link": "Register as Farmer or Buyer",
+    "have_account": "Already registered?",
+    "login_link": "Login here",
+    "invalid_phone": "Please enter a valid 10-digit mobile phone number.",
+    "invalid_otp": "Please enter a valid 6-digit verification code.",
+    "role_required": "Please select whether you are a Farmer or a Buyer.",
+    "logout_confirm": "Are you sure you want to log out?"
+  },
+  "profile": {
+    "title": "My Account Profile",
+    "subtitle": "Your registered RythuConnect identity and preferences.",
+    "phone": "Registered Phone",
+    "role": "Account Role",
+    "language": "Preferred Language",
+    "verification_status": "Verification Status",
+    "logout_button": "Log Out of Session"
+  },
+  "unauthorized": {
+    "title": "Access Restricted",
+    "message": "You do not have permission to view this section of the marketplace with your current role.",
+    "go_home": "Return to Home",
+    "go_profile": "View My Profile"
+  },
+  "landing": {
+    "badge": "🌱 Agricultural Direct Marketplace",
+    "hero_title": "Connect Farmers Directly with Buyers",
+    "hero_desc": "A multilingual agriculture marketplace helping farmers sell produce directly to buyers, eliminate middleman dependency, and discover fair, transparent market opportunities.",
+    "get_started": "Get Started",
+    "how_it_works": "How It Works",
+    "roles_heading": "Choose Your Marketplace Role",
+    "roles_subheading": "Tailored interfaces designed specifically for harvest producers and commercial buyers.",
+    "for_farmers": "For Farmers",
+    "farmer_desc": "List your crops directly, set transparent unit prices, and connect directly with local and commercial buyers without paying intermediary commissions.",
+    "for_buyers": "For Buyers",
+    "buyer_desc": "Source fresh, verified agricultural produce directly from farm origins with verifiable harvest details and clear per-unit prices."
+  }
+}
