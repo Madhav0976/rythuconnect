@@ -1,65 +1,185 @@
-import Image from "next/image";
+import React from 'react';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col flex-1 w-full">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/60 via-white to-transparent py-12 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-slate-100">
+        <div className="mx-auto max-w-4xl text-center">
+          <Badge variant="primary" size="md" className="mb-4 shadow-2xs">
+            🌱 Agricultural Direct Marketplace
+          </Badge>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Connect Farmers Directly with Buyers
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-5 text-base sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            A multilingual agriculture marketplace helping farmers sell produce directly to buyers,
+            eliminate middleman dependency, and discover fair, transparent market opportunities.
+          </p>
+
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <a href="#roles" className="w-full sm:w-auto">
+              <Button variant="primary" size="lg" fullWidth>
+                Get Started
+              </Button>
+            </a>
+            <a href="#how-it-works" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" fullWidth>
+                How It Works
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Role Selection / Entry Cards */}
+      <section id="roles" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl w-full">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+            Choose Your Marketplace Role
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 mt-2">
+            Tailored interfaces designed specifically for harvest producers and commercial buyers.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {/* Farmer Role Card */}
+          <Card variant="elevated" className="flex flex-col justify-between border-t-4 border-t-emerald-600">
+            <CardHeader>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-3xl" aria-hidden="true">
+                  🌾
+                </span>
+                <Badge variant="primary">FARMER ROLE</Badge>
+              </div>
+              <CardTitle>For Farmers</CardTitle>
+              <CardDescription>
+                List your crops directly, set transparent unit prices, and connect directly with local
+                and commercial buyers without paying intermediary commissions.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2.5 text-sm text-slate-700 mb-6">
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-700 font-bold" aria-hidden="true">✓</span>
+                  <span>Direct crop listings with quantity and harvest dates</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-700 font-bold" aria-hidden="true">✓</span>
+                  <span>Choice between buyer pickup or farm delivery</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-700 font-bold" aria-hidden="true">✓</span>
+                  <span>Multilingual support for Telugu and Hindi speakers</span>
+                </li>
+              </ul>
+              <div className="pt-2">
+                <Button variant="primary" size="md" fullWidth disabled>
+                  Farmer Portal (Phase 4.2)
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Buyer Role Card */}
+          <Card variant="elevated" className="flex flex-col justify-between border-t-4 border-t-amber-600">
+            <CardHeader>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-3xl" aria-hidden="true">
+                  🛒
+                </span>
+                <Badge variant="secondary">BUYER ROLE</Badge>
+              </div>
+              <CardTitle>For Buyers</CardTitle>
+              <CardDescription>
+                Source fresh, verified agricultural produce directly from farm origins with verifiable
+                harvest details and clear per-unit prices.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2.5 text-sm text-slate-700 mb-6">
+                <li className="flex items-center gap-2">
+                  <span className="text-amber-700 font-bold" aria-hidden="true">✓</span>
+                  <span>Browse authentic farm produce by category & region</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-amber-700 font-bold" aria-hidden="true">✓</span>
+                  <span>Transparent quantity units (KG, Quintal, Ton, Crate)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-amber-700 font-bold" aria-hidden="true">✓</span>
+                  <span>Secure direct connection with verified growers</span>
+                </li>
+              </ul>
+              <div className="pt-2">
+                <Button variant="secondary" size="md" fullWidth disabled>
+                  Buyer Marketplace (Phase 4.2)
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </main>
+      </section>
+
+      {/* Trust & Architecture Highlights */}
+      <section id="how-it-works" className="bg-slate-50 border-t border-slate-200/80 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+              Core Principles of RythuConnect
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 mt-2">
+              Designed from first principles to empower Indian agriculture with technology and trust.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div className="text-2xl mb-2" aria-hidden="true">
+                🤝
+              </div>
+              <h3 className="font-bold text-slate-900 text-base">Direct Transactions</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Connects buyers directly to producers, removing unnecessary middlemen and broker margins.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div className="text-2xl mb-2" aria-hidden="true">
+                📊
+              </div>
+              <h3 className="font-bold text-slate-900 text-base">Transparent Pricing</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Farmers establish prices openly for their crops with clear quantity units and delivery conditions.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div className="text-2xl mb-2" aria-hidden="true">
+                🌐
+              </div>
+              <h3 className="font-bold text-slate-900 text-base">Multilingual Design</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Native interfaces designed to support regional languages: Telugu (తెలుగు), Hindi (हिन्दी), and English.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+              <div className="text-2xl mb-2" aria-hidden="true">
+                📱
+              </div>
+              <h3 className="font-bold text-slate-900 text-base">Mobile-First Shell</h3>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Built specifically for smartphone touchscreens, resilient in low-connectivity rural environments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
