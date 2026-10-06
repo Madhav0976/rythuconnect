@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "lint": "echo \"Linting backend... (OK)\" && exit 0",
-    "test": "node dist/test/health.test.js"
+    "test": "node dist/test/health.test.js && node dist/test/models.test.js",
+    "seed:categories": "ts-node-dev --transpile-only src/scripts/seedCategories.ts"
   },
   "keywords": [
     "rythuconnect",
@@ -19,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rythuconnect/types": "*",
     "axios": "^1.16.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",

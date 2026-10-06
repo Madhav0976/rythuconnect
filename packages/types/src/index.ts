@@ -21,3 +21,140 @@ export interface HealthStatus {
     connected: boolean;
   };
 }
+
+/**
+ * Supported User Roles
+ */
+export enum UserRole {
+  FARMER = 'FARMER',
+  BUYER = 'BUYER',
+  ADMIN = 'ADMIN',
+}
+
+/**
+ * Supported Language Codes
+ */
+export enum LanguageCode {
+  EN = 'en',
+  TE = 'te',
+  HI = 'hi',
+}
+
+/**
+ * GeoJSON 2D Point representation [longitude, latitude]
+ */
+export interface GeoPoint {
+  type: 'Point';
+  coordinates: [number, number]; // [longitude, latitude]
+}
+
+/**
+ * Supported Delivery Modes for Crop Listings
+ */
+export enum DeliveryType {
+  BUYER_PICKUP = 'BUYER_PICKUP',
+  FARMER_DELIVERY = 'FARMER_DELIVERY',
+}
+
+/**
+ * Supported Crop Listing Statuses
+ */
+export enum ListingStatus {
+  AVAILABLE = 'AVAILABLE',
+  SOLD = 'SOLD',
+  EXPIRED = 'EXPIRED',
+}
+
+/**
+ * Standard Agricultural Quantity Units
+ */
+export enum QuantityUnit {
+  KG = 'KG',
+  QUINTAL = 'QUINTAL',
+  TON = 'TON',
+  BAG = 'BAG',
+  CRATE = 'CRATE',
+  PIECE = 'PIECE',
+}
+
+/**
+ * Multilingual Translation Map
+ */
+export interface LocalizedText {
+  [key: string]: string | undefined;
+  en?: string;
+  te?: string;
+  hi?: string;
+}
+
+/**
+ * User Identity Domain Contract
+ */
+export interface User {
+  id: string;
+  phone: string;
+  role: UserRole;
+  preferredLanguage: LanguageCode;
+  isVerified: boolean;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
+
+/**
+ * Farmer Profile Domain Contract
+ */
+export interface FarmerProfile {
+  id: string;
+  userId: string;
+  farmLocation: string;
+  coordinates?: GeoPoint;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
+
+/**
+ * Buyer Profile Domain Contract
+ */
+export interface BuyerProfile {
+  id: string;
+  userId: string;
+  deliveryAddress: string;
+  businessName?: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
+
+/**
+ * Crop Category Domain Contract
+ */
+export interface Category {
+  id: string;
+  name: string;
+  translations?: LocalizedText;
+  slug: string;
+  isActive: boolean;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
+
+/**
+ * Crop Listing Domain Contract
+ */
+export interface CropListing {
+  id: string;
+  farmerId: string;
+  categoryId: string;
+  cropName: string;
+  quantity: number;
+  quantityUnit: QuantityUnit;
+  price: number;
+  harvestDate: string | Date;
+  images: string[];
+  deliveryType: DeliveryType;
+  deliveryCharge?: number;
+  location: string;
+  coordinates?: GeoPoint;
+  status: ListingStatus;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+}
