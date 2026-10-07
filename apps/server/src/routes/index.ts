@@ -1,11 +1,15 @@
 import { Router } from 'express';
 import healthRoutes from './health.routes';
 import authRoutes from './auth.routes';
+import categoryRoutes from './category.routes';
+import listingRoutes from './listing.routes';
 
 const router = Router();
 
 // Mount foundational routes
 router.use('/', healthRoutes);
 router.use('/auth', authRoutes);
+router.use('/categories', categoryRoutes);
+router.use('/listings', listingRoutes);
 
 export default router;

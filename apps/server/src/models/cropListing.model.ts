@@ -76,7 +76,7 @@ const cropListingSchema = new Schema<CropListingDocument>(
     price: {
       type: Number,
       required: [true, 'Price is required'],
-      min: [0, 'Price cannot be negative'],
+      min: [0.01, 'Price must be a positive number greater than 0'],
     },
     harvestDate: {
       type: Date,

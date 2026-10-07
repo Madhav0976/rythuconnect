@@ -49,7 +49,7 @@ export const INITIAL_CATEGORIES = [
     translations: {
       en: 'Spices',
       te: 'మసాలాలు',
-      hi: 'మసాలే',
+      hi: 'मसाले',
     },
     isActive: true,
   },
@@ -69,7 +69,7 @@ export const INITIAL_CATEGORIES = [
     translations: {
       en: 'Commercial Crops',
       te: 'వాణిజ్య పంటలు',
-      hi: 'व्याవసాయిక ఫసలే',
+      hi: 'व्यावसायिक फसलें',
     },
     isActive: true,
   },

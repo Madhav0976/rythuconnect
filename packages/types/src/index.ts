@@ -202,3 +202,62 @@ export interface CropListing {
   createdAt: string | Date;
   updatedAt: string | Date;
 }
+
+/**
+ * Populated Crop Listing with associated Category
+ */
+export interface PopulatedCropListing extends Omit<CropListing, 'categoryId'> {
+  categoryId: Category | string;
+  category?: Category;
+}
+
+/**
+ * Request payload for creating a new crop listing
+ */
+export interface CreateListingRequest {
+  cropName: string;
+  categoryId: string;
+  quantity: number;
+  quantityUnit: QuantityUnit;
+  price: number;
+  harvestDate: string | Date;
+  deliveryType: DeliveryType;
+  deliveryCharge?: number;
+  location: string;
+  coordinates?: GeoPoint;
+  images?: string[];
+}
+
+/**
+ * Request payload for updating an existing crop listing
+ */
+export interface UpdateListingRequest {
+  cropName?: string;
+  categoryId?: string;
+  quantity?: number;
+  quantityUnit?: QuantityUnit;
+  price?: number;
+  harvestDate?: string | Date;
+  deliveryType?: DeliveryType;
+  deliveryCharge?: number;
+  location?: string;
+  coordinates?: GeoPoint;
+  images?: string[];
+}
+
+/**
+ * Request payload for mutating listing status
+ */
+export interface UpdateListingStatusRequest {
+  status: ListingStatus.SOLD;
+}
+
+/**
+ * Farmer listing metrics for dashboard overview
+ */
+export interface FarmerDashboardStats {
+  totalListings: number;
+  activeListings: number;
+  soldListings: number;
+  expiredListings: number;
+}

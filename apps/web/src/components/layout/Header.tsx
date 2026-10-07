@@ -59,13 +59,20 @@ export const Header: React.FC = () => {
 
           {isAuthenticated ? (
             <div className="flex items-center gap-2 sm:gap-3">
-              {/* Role-Specific Dashboard Link */}
+              {/* Role-Specific Dashboard & Listings Links */}
               {user?.role === UserRole.FARMER && (
-                <Link href="/farmer/dashboard" className="hidden md:inline-flex">
-                  <Button variant="outline" size="sm">
-                    🌾 {t('nav.farmer_dashboard')}
-                  </Button>
-                </Link>
+                <>
+                  <Link href="/farmer/dashboard" className="hidden lg:inline-flex">
+                    <Button variant="outline" size="sm">
+                      🌾 {t('nav.farmer_dashboard')}
+                    </Button>
+                  </Link>
+                  <Link href="/farmer/listings" className="hidden md:inline-flex">
+                    <Button variant="outline" size="sm">
+                      📦 {t('nav.my_listings')}
+                    </Button>
+                  </Link>
+                </>
               )}
 
               {user?.role === UserRole.BUYER && (

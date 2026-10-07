@@ -11,3 +11,4 @@ export * from './FormField';
 export * from './PhoneInput';
 export * from './OTPInput';
 export * from './LanguageSwitcher';
+export * from './Modal';
