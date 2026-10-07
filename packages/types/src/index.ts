@@ -261,3 +261,57 @@ export interface FarmerDashboardStats {
   soldListings: number;
   expiredListings: number;
 }
+
+/**
+ * Public/sanitized farmer information for marketplace listings
+ */
+export interface MarketplaceListingFarmer {
+  id: string;
+  isVerified: boolean;
+}
+
+/**
+ * Crop Listing formatted for buyer marketplace discovery
+ */
+export interface MarketplaceListing extends PopulatedCropListing {
+  farmer?: MarketplaceListingFarmer;
+}
+
+/**
+ * Whitelisted marketplace sort options
+ */
+export type MarketplaceSortOption = 'newest' | 'price_asc' | 'price_desc' | 'harvest_date';
+
+/**
+ * Filter and pagination query parameters for buyer marketplace
+ */
+export interface MarketplaceQuery {
+  search?: string;
+  categoryId?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  location?: string;
+  sort?: MarketplaceSortOption;
+  page?: number;
+  limit?: number;
+}
+
+/**
+ * Paginated response envelope for marketplace listings
+ */
+export interface PaginatedMarketplaceListings {
+  items: MarketplaceListing[];
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+/**
+ * Farmer contact payload for authorized buyer WhatsApp contact
+ */
+export interface ListingContactInfo {
+  farmerPhone: string;
+  isVerified: boolean;
+  cropName: string;
+}

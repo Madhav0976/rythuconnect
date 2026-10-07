@@ -7,6 +7,10 @@ import {
   FarmerDashboardStats,
   ListingStatus,
   ApiResponse,
+  MarketplaceListing,
+  MarketplaceQuery,
+  PaginatedMarketplaceListings,
+  ListingContactInfo,
 } from '@rythuconnect/types';
 
 export interface ListingServiceResult<T = unknown> {
@@ -206,6 +210,89 @@ export const listingService = {
         success: false,
         message: 'Failed to delete listing. Please try again.',
       };
+    }
+  },
+
+  /**
+   * Retrieves paginated available crop listings for buyer marketplace discovery.
+   */
+  async getMarketplaceListings(
+    query: MarketplaceQuery = {}
+  ): Promise<PaginatedMarketplaceListings> {
+    try {
+      const params: Record<string, string | number | undefined> = {};
+      if (query.search) params.search = query.search;
+      if (query.categoryId) params.categoryId = query.categoryId;
+      if (query.minPrice !== undefined && query.minPrice !== null && Number.isFinite(query.minPrice)) {
+        params.minPrice = query.minPrice;
+      }
+      if (query.maxPrice !== undefined && query.maxPrice !== null && Number.isFinite(query.maxPrice)) {
+        params.maxPrice = query.maxPrice;
+      }
+      if (query.location) params.location = query.location;
+      if (query.sort) params.sort = query.sort;
+      if (query.page) params.page = query.page;
+      if (query.limit) params.limit = query.limit;
+
+      const res = await apiClient<ApiResponse<PaginatedMarketplaceListings>>(
+        '/marketplace/listings',
+        {
+          method: 'GET',
+          params,
+        }
+      );
+
+      return (
+        res.data || {
+          items: [],
+          page: 1,
+          limit: 12,
+          total: 0,
+          totalPages: 0,
+        }
+      );
+    } catch {
+      return {
+        items: [],
+        page: 1,
+        limit: 12,
+        total: 0,
+        totalPages: 0,
+      };
+    }
+  },
+
+  /**
+   * Retrieves single available crop listing by ID for buyer detail screen.
+   */
+  async getMarketplaceListingById(id: string): Promise<MarketplaceListing | null> {
+    try {
+      const res = await apiClient<ApiResponse<MarketplaceListing>>(
+        `/marketplace/listings/${id}`,
+        {
+          method: 'GET',
+        }
+      );
+      return res.data || null;
+    } catch {
+      return null;
+    }
+  },
+
+  /**
+   * Retrieves verified farmer contact details for authorized buyer WhatsApp contact.
+   */
+  async getListingContact(id: string): Promise<ListingContactInfo | null> {
+    try {
+      const res = await apiClient<ApiResponse<ListingContactInfo>>(
+        `/marketplace/listings/${id}/contact`,
+        {
+          method: 'GET',
+        }
+      );
+      return res.data || null;
+    } catch {
+      return null;
     }
   },
 };

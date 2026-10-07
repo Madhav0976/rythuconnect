@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "lint": "echo \"Linting backend... (OK)\" && exit 0",
-    "test": "node dist/test/health.test.js && node dist/test/models.test.js && node dist/test/auth.test.js && node dist/test/listings.test.js",
+    "test": "node dist/test/health.test.js && node dist/test/models.test.js && node dist/test/auth.test.js && node dist/test/listings.test.js && node dist/test/marketplace.test.js",
     "seed:categories": "ts-node-dev --transpile-only src/scripts/seedCategories.ts"
   },
   "keywords": [

@@ -112,13 +112,12 @@ export class CategoryService {
       return false;
     }
 
-    const isDbConnected = mongoose.connection.readyState === 1;
-    if (!isDbConnected) {
-      return true; // permit in mock mode
+    try {
+      const category = await Category.findById(categoryId);
+      return Boolean(category && category.isActive);
+    } catch {
+      return false;
     }
-
-    const category = await Category.findById(categoryId);
-    return Boolean(category && category.isActive);
   }
 }
 
