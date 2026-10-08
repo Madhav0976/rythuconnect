@@ -8,6 +8,7 @@ import { useTranslation } from '@/context/LanguageContext';
 import { RoleGuard } from '@/components/auth/RoleGuard';
 import { listingService } from '@/services/listing.service';
 import { buildWhatsAppUrl } from '@/lib/whatsapp';
+import { DeliveryEstimator } from '@/components/delivery';
 import {
   Card,
   CardHeader,
@@ -301,41 +302,8 @@ export default function BuyerListingDetailPage() {
                 </CardContent>
               </Card>
 
-              {/* Delivery Specifications */}
-              <Card variant="elevated" className="border-slate-200/80 rounded-2xl">
-                <CardHeader className="pb-3 border-b border-slate-100">
-                  <CardTitle className="text-base font-bold text-slate-900">
-                    🚚 {t('marketplace.delivery_options')}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-2 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-600 font-medium">
-                      {t('marketplace.delivery_method')}:
-                    </span>
-                    <span className="font-semibold text-slate-800">
-                      {listing.deliveryType === DeliveryType.FARMER_DELIVERY
-                        ? t('listings.delivery_farmer_delivery')
-                        : t('listings.delivery_buyer_pickup')}
-                    </span>
-                  </div>
-
-                  {listing.deliveryType === DeliveryType.FARMER_DELIVERY ? (
-                    <div className="flex items-center justify-between pt-1 border-t border-slate-100">
-                      <span className="text-slate-600 font-medium">
-                        {t('marketplace.delivery_charge')}:
-                      </span>
-                      <span className="font-bold text-slate-800">
-                        {listing.deliveryCharge ? `₹${listing.deliveryCharge}` : 'Free'}
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="text-xs text-slate-500 pt-1">
-                      {t('marketplace.free_pickup')}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+              {/* Delivery Logistics & Estimation */}
+              <DeliveryEstimator listing={listing} />
 
               {/* Farmer Contact & WhatsApp CTA */}
               <div className="space-y-3 pt-2">

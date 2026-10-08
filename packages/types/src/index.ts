@@ -315,3 +315,42 @@ export interface ListingContactInfo {
   isVerified: boolean;
   cropName: string;
 }
+
+/**
+ * Buyer destination coordinate payload for delivery calculation
+ * Canonical GeoJSON convention: [longitude, latitude]
+ */
+export interface DestinationCoordinates {
+  coordinates: [number, number]; // [longitude, latitude]
+  address?: string;
+}
+
+/**
+ * Request payload for estimating delivery distance and charge
+ */
+export interface DeliveryEstimateRequest {
+  listingId: string;
+  destination?: DestinationCoordinates;
+}
+
+/**
+ * Detailed breakdown of calculated delivery fee components
+ */
+export interface DeliveryFeeBreakdown {
+  baseCharge: number;
+  distanceCharge: number;
+  ratePerKm: number;
+}
+
+/**
+ * Result returned by the backend delivery estimation engine
+ */
+export interface DeliveryEstimateResult {
+  listingId: string;
+  deliveryType: DeliveryType;
+  distanceKm: number | null;
+  deliveryCharge: number;
+  currency: string;
+  isPickup: boolean;
+  breakdown?: DeliveryFeeBreakdown;
+}
